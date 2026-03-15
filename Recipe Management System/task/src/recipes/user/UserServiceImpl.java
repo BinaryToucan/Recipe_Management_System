@@ -1,4 +1,4 @@
-package recipes.user;
+package user;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

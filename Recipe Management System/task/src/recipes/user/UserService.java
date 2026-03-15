@@ -1,4 +1,4 @@
-package recipes.user;
+package user;
 
 public interface UserService {
 

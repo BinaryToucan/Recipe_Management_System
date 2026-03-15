@@ -1,4 +1,4 @@
-package recipes.user;
+package user;
 
 import jakarta.persistence.*;
 import lombok.Data;

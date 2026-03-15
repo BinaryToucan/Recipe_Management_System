@@ -1,6 +1,7 @@
-package recipes.user;
+package user;
 
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserService userService;
 
     public AuthController(UserRepository userRepository,
                           PasswordEncoder passwordEncoder) {
@@ -27,11 +31,7 @@ public class AuthController {
                 return ResponseEntity.badRequest().build();
             }
 
-            User user = new User();
-            user.setEmail(request.getEmail());
-            user.setPassword(passwordEncoder.encode(request.getPassword()));
-
-            userRepository.save(user);
+            userService.registerUser(request);
 
             return ResponseEntity.ok().build();
     }
